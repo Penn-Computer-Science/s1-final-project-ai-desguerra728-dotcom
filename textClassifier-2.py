@@ -18,6 +18,7 @@ print(df.head()) # prints the first 5 rows of the csv
 print(df['Category'].value_counts()) # print the count of each category
 
 x = df['Message'] # features (the messages)
+print(x[:10])
 y = df['Category'] # labels (the categories)
 print(len(x)) # prints number of messages
 
@@ -30,10 +31,40 @@ encoder = LabelEncoder()
 y = encoder.fit_transform(y)
 print(y[:10]) # print first 10 encoded labels
 
-processed = x.str.lower() # convert to lowercase
+processed = x.str.replace(r'^http\://[a-zA-Z0-9\-\.]+\.[a-z-A]{2,3}(/\S*)?$', 'webaddress')
+processed = processed.str.replace(r'\d+(\.\d+)?', 'numbr')
+processed = processed.str.replace(r'[^\w\d\s]', ' ') # remove punctuation
 
-nltk.download('stopwords')
+print(processed[:10]) # print first 10 processed messages
+
+
+# convert to lowercase
+processed = processed.str.lower()
+
+#remove stop words
 from nltk.corpus import stopwords
-
 stop_words = set(stopwords.words('english'))
 processed = processed.apply(lambda x: " ".join(term for term in x.split() if term not in stop_words))
+
+#remove word stems using a Porter stemmer
+ps = nltk.PorterStemmer()
+processed = processed.apply(lambda x: ' '.join(ps.stem(term) for term in x.split()))
+
+from nltk.tokenize import word_tokenize
+# Tokenization is the process of breaking down text into smaller units called tokens, which can be words, phrases, or sentences.
+# creating a bag-of-words
+all_words = []
+
+for message in processed:
+    words = word_tokenize(message)
+    for w in words:
+        all_words.append(w)
+
+print(words[:10]) # print first 10 tokens of last message
+print(all_words[:10]) # print first 10 words in bag-of-words
+
+all_words = nltk.FreqDist(all_words)
+print('number of words: {}'.format(len(all_words)))
+print('most frequent words:{}'.format(all_words.most_common(15)))
+
+# 36:58
