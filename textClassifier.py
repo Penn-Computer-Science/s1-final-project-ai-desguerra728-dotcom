@@ -60,7 +60,14 @@ print(classification_report(y_test, predictSVC)) # print detailed classification
 
 # TF-IDF (Term Frequency-Inverse Document Frequency): Weights words based on their importance in a document relative to the entire corpus.
 # N-grams: Considers sequences of words (e.g., "bag of words") to capture some contextual information.
+# In NLP, stop words are common words like "the," "a," and "is" 
+# that are often filtered out to reduce noise and improve the efficiency of text analysis. They are removed to help systems focus on more meaningful words for tasks such as search, topic modeling, and sentiment analysis, though they can sometimes be retained to preserve context. 
+
 
 # MNB:0.95
+# CNB:0.98
+# SVC:0.99
+
+# MNB:0.97
 # CNB:0.98
 # SVC:0.99

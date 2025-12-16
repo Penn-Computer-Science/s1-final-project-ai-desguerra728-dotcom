@@ -190,3 +190,4 @@ model = keras.models.load_model("model.keras")
 
 **What you would improve with more time:**  
 *(Write here)*  
+[tut](https://www.youtube.com/watch?v=G4UVJoGFAv0)

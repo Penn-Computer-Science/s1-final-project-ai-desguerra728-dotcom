@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import nltk
 import sklearn
+import matplotlib.pyplot as plt
 
 # print versions of libraries
 print('Python: {}'.format(sys.version))
@@ -175,11 +176,32 @@ txt_features, labels = zip(*test)
 
 prediction = nltk_ensemble.classify_many(txt_features)
 
-# print a confusion matriz adn classifiication report
+# print a confusion matrix and classification report
 print(classification_report(labels, prediction))
 
-pd.DataFrame(
-    confusion_matrix(labels, prediction),
-    index = [['actual', 'actual'], ['ham', 'spam']],
-    columns = [['predicted', 'predicted'], ['ham', 'spam']]
-)
+
+# # AI assisted: plotting confusion matrix
+# # build a confusion matrix DataFrame and print it
+# cm = confusion_matrix(labels, prediction)
+# cm_df = pd.DataFrame(cm, index=['ham', 'spam'], columns=['ham', 'spam'])
+# print(cm_df)
+
+# # plot confusion matrix using matplotlib
+# fig, ax = plt.subplots(figsize=(4, 4))
+# im = ax.imshow(cm, cmap='Blues')
+# ax.set_title('Confusion Matrix')
+# ax.set_xlabel('Predicted')
+# ax.set_ylabel('Actual')
+# ax.set_xticks([0, 1])
+# ax.set_yticks([0, 1])
+# ax.set_xticklabels(['ham', 'spam'])
+# ax.set_yticklabels(['ham', 'spam'])
+
+# for i in range(cm.shape[0]):
+#     for j in range(cm.shape[1]):
+#         ax.text(j, i, cm[i, j], ha='center', va='center', color='black')
+
+# fig.colorbar(im, ax=ax)
+# plt.tight_layout()
+# plt.show()
+
