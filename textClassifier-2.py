@@ -109,8 +109,12 @@ messages = zip(processed, y)
 
 # define a seed for reproducibility
 seed = 1
-np.random.seed = seed
-# np.random.shuffle(messages)
+np.random.seed(seed)
+# make messages a list so it can be shuffled/reused
+messages = list(messages)
+import random
+random.seed(seed)
+random.shuffle(messages)
 
 # call find_features for each SMS messages
 featuresets = [(find_features(text), label) for text, label in messages]
@@ -119,8 +123,8 @@ featuresets = [(find_features(text), label) for text, label in messages]
 from sklearn import model_selection
 train, test = model_selection.train_test_split(featuresets, test_size = 0.25, random_state = seed)
 
-print("num of test: " + str(len(train)))
-print("num of train: " + str(len(test)))
+print("num of train: " + str(len(train)))
+print("num of test: " + str(len(test)))
 print()
 
 
@@ -133,8 +137,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 
-# define models to trains
-
+# define models to train
 names = ['K Nearest Neighbors', 'Decision Tree', 'Random Forest', 'Logistic Regression', 'SGD Classifier', 'Multinomial NB', 'SVC Linear']
 classfiers = [
     KNeighborsClassifier(),
@@ -146,5 +149,37 @@ classfiers = [
     SVC(kernel = 'linear')
 ]
 
-models = zip(names, classfiers)
+models = list(zip(names, classfiers))
 print(models)
+
+# wrap models in NLTK then train and test
+from nltk.classify.scikitlearn import SklearnClassifier
+
+for name, model in models:
+    nltk_model = SklearnClassifier(model)
+    nltk_model.train(train)
+    accuracy = nltk.classify.accuracy(nltk_model, test)*100 # calculates accuracy (multiply by 100 to get percent)
+    print('{}: Accuracy: {}'.format(name, accuracy))
+
+#  ensemble method - Voting Classifier
+#  using several methods to vote whether a message is spam or ham
+from sklearn.ensemble import VotingClassifier
+
+nltk_ensemble = SklearnClassifier(VotingClassifier(estimators = models, voting = 'hard', n_jobs = -1))
+nltk_ensemble.train(train)
+accuracy = nltk.classify.accuracy(nltk_ensemble, test)*100 # calculates accuracy (multiply by 100 to get percent)
+print('Ensemble Method Accuracy: {}'.format(accuracy))
+
+# make class lebel prediction for testing set
+txt_features, labels = zip(*test)
+
+prediction = nltk_ensemble.classify_many(txt_features)
+
+# print a confusion matriz adn classifiication report
+print(classification_report(labels, prediction))
+
+pd.DataFrame(
+    confusion_matrix(labels, prediction),
+    index = [['actual', 'actual'], ['ham', 'spam']],
+    columns = [['predicted', 'predicted'], ['ham', 'spam']]
+)
