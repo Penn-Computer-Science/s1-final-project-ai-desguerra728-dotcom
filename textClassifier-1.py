@@ -117,9 +117,8 @@ import random
 random.seed(seed)
 random.shuffle(messages)
 
-# call find_features for each SMS messages
+# find features for each SMS messages
 featuresets = [(find_features(text), label) for text, label in messages]
-print("feat" + str(featuresets[:5]))
 
 #  split training adn tetsing datta sets using sklearn
 from sklearn import model_selection
