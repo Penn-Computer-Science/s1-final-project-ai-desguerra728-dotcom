@@ -14,7 +14,7 @@ print('Scikit-learn: {}'.format(sklearn.__version__))
 print()
 
 # load dataset
-df = pd.read_csv('spamHamData.csv') # loads the data into a dataframe
+df = pd.read_csv('data\spamHamData.csv') # loads the data into a dataframe
 print(df.head()) # prints the first 5 rows of the csv
 print()
 
