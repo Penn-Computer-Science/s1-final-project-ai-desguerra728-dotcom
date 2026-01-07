@@ -122,7 +122,7 @@ featuresets = [(find_features(text), label) for text, label in messages]
 
 #  split training adn tetsing datta sets using sklearn
 from sklearn import model_selection
-train, test = model_selection.train_test_split(featuresets, test_size = 0.33, random_state = seed)
+train, test = model_selection.train_test_split(featuresets, test_size = 0.20, random_state = seed)
 
 print("num of train: " + str(len(train)))
 print("num of test: " + str(len(test)))
@@ -344,4 +344,112 @@ weighted avg       0.92      0.90      0.90        50
       ham  spam
 ham    23     0
 spam    5    22
+'''
+
+
+'''
+K Nearest Neighbors: Accuracy: 66.66666666666666
+              precision    recall  f1-score   support
+
+           0       0.62      1.00      0.77        18
+           1       1.00      0.27      0.42        15
+
+    accuracy                           0.67        33
+   macro avg       0.81      0.63      0.59        33
+weighted avg       0.79      0.67      0.61        33
+
+      ham  spam
+ham    18     0
+spam   11     4
+Decision Tree: Accuracy: 93.93939393939394
+              precision    recall  f1-score   support
+
+           0       1.00      0.89      0.94        18
+           1       0.88      1.00      0.94        15
+
+    accuracy                           0.94        33
+   macro avg       0.94      0.94      0.94        33
+weighted avg       0.95      0.94      0.94        33
+
+      ham  spam
+ham    16     2
+spam    0    15
+Random Forest: Accuracy: 93.93939393939394
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        18
+           1       1.00      0.87      0.93        15
+
+    accuracy                           0.94        33
+   macro avg       0.95      0.93      0.94        33
+weighted avg       0.95      0.94      0.94        33
+
+      ham  spam
+ham    18     0
+spam    2    13
+Logistic Regression: Accuracy: 93.93939393939394
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        18
+           1       1.00      0.87      0.93        15
+
+    accuracy                           0.94        33
+   macro avg       0.95      0.93      0.94        33
+weighted avg       0.95      0.94      0.94        33
+
+      ham  spam
+ham    18     0
+spam    2    13
+SGD Classifier: Accuracy: 87.87878787878788
+              precision    recall  f1-score   support
+
+           0       0.89      0.89      0.89        18
+           1       0.87      0.87      0.87        15
+
+    accuracy                           0.88        33
+   macro avg       0.88      0.88      0.88        33
+weighted avg       0.88      0.88      0.88        33
+
+      ham  spam
+ham    16     2
+spam    2    13
+Multinomial NB: Accuracy: 87.87878787878788
+              precision    recall  f1-score   support
+
+           0       0.89      0.89      0.89        18
+           1       0.87      0.87      0.87        15
+
+    accuracy                           0.88        33
+   macro avg       0.88      0.88      0.88        33
+weighted avg       0.88      0.88      0.88        33
+
+      ham  spam
+ham    16     2
+spam    2    13
+SVC Linear: Accuracy: 93.93939393939394
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        18
+           1       1.00      0.87      0.93        15
+
+    accuracy                           0.94        33
+   macro avg       0.95      0.93      0.94        33
+weighted avg       0.95      0.94      0.94        33
+
+      ham  spam
+ham    18     0
+spam    2    13
+Ensemble Method Accuracy: 93.93939393939394
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        18
+           1       1.00      0.87      0.93        15
+
+    accuracy                           0.94        33
+   macro avg       0.95      0.93      0.94        33
+weighted avg       0.95      0.94      0.94        33
+
+      ham  spam
+ham    18     0
+spam    2    13
 '''
