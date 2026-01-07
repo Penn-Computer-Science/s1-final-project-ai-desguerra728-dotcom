@@ -14,7 +14,7 @@ print('Scikit-learn: {}'.format(sklearn.__version__))
 print()
 
 # load dataset
-df = pd.read_csv('data\spamHamData.csv') # loads the data into a dataframe
+df = pd.read_csv('data\messagesDataset.csv') # loads the data into a dataframe
 print(df.head()) # prints the first 5 rows of the csv
 print()
 
@@ -122,7 +122,7 @@ featuresets = [(find_features(text), label) for text, label in messages]
 
 #  split training adn tetsing datta sets using sklearn
 from sklearn import model_selection
-train, test = model_selection.train_test_split(featuresets, test_size = 0.25, random_state = seed)
+train, test = model_selection.train_test_split(featuresets, test_size = 0.50, random_state = seed)
 
 print("num of train: " + str(len(train)))
 print("num of test: " + str(len(test)))
