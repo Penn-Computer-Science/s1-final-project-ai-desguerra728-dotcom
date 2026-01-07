@@ -240,115 +240,108 @@ plt.tight_layout()
 plt.show()
 
 '''
-K Nearest Neighbors: Accuracy: 56.00000000000001
+K Nearest Neighbors: Accuracy: 50.0
               precision    recall  f1-score   support
 
-           0       0.52      1.00      0.69        24
-           1       1.00      0.15      0.27        26
+           0       0.48      1.00      0.65        23
+           1       1.00      0.07      0.14        27
 
-    accuracy                           0.56        50
-   macro avg       0.76      0.58      0.48        50
-weighted avg       0.77      0.56      0.47        50
+    accuracy                           0.50        50
+   macro avg       0.74      0.54      0.39        50
+weighted avg       0.76      0.50      0.37        50
 
       ham  spam
-ham    24     0
-spam   22     4
-
-Decision Tree: Accuracy: 82.0
+ham    23     0
+spam   25     2
+Decision Tree: Accuracy: 80.0
               precision    recall  f1-score   support
 
-           0       0.86      0.75      0.80        24
-           1       0.79      0.88      0.84        26
+           0       0.76      0.83      0.79        23
+           1       0.84      0.78      0.81        27
 
-    accuracy                           0.82        50
-   macro avg       0.83      0.82      0.82        50
-weighted avg       0.82      0.82      0.82        50
+    accuracy                           0.80        50
+   macro avg       0.80      0.80      0.80        50
+weighted avg       0.80      0.80      0.80        50
 
       ham  spam
-ham    18     6
-spam    3    23
-
-Random Forest: Accuracy: 92.0
+ham    19     4
+spam    6    21
+Random Forest: Accuracy: 84.0
               precision    recall  f1-score   support
 
-           0       0.86      1.00      0.92        24
-           1       1.00      0.85      0.92        26
+           0       0.74      1.00      0.85        23
+           1       1.00      0.70      0.83        27
 
-    accuracy                           0.92        50
-   macro avg       0.93      0.92      0.92        50
-weighted avg       0.93      0.92      0.92        50
+    accuracy                           0.84        50
+   macro avg       0.87      0.85      0.84        50
+weighted avg       0.88      0.84      0.84        50
 
       ham  spam
-ham    24     0
-spam    4    22
-
-Logistic Regression: Accuracy: 94.0
+ham    23     0
+spam    8    19
+Logistic Regression: Accuracy: 90.0
               precision    recall  f1-score   support
 
-           0       0.89      1.00      0.94        24
-           1       1.00      0.88      0.94        26
+           0       0.82      1.00      0.90        23
+           1       1.00      0.81      0.90        27
 
-    accuracy                           0.94        50
-   macro avg       0.94      0.94      0.94        50
-weighted avg       0.95      0.94      0.94        50
+    accuracy                           0.90        50
+   macro avg       0.91      0.91      0.90        50
+weighted avg       0.92      0.90      0.90        50
 
       ham  spam
-ham    24     0
-spam    3    23
-
+ham    23     0
+spam    5    22
 SGD Classifier: Accuracy: 86.0
               precision    recall  f1-score   support
 
-           0       0.87      0.83      0.85        24
-           1       0.85      0.88      0.87        26
+           0       0.86      0.83      0.84        23
+           1       0.86      0.89      0.87        27
 
     accuracy                           0.86        50
    macro avg       0.86      0.86      0.86        50
 weighted avg       0.86      0.86      0.86        50
 
       ham  spam
-ham    20     4
-spam    3    23
-
+ham    19     4
+spam    3    24
 Multinomial NB: Accuracy: 92.0
               precision    recall  f1-score   support
 
-           0       0.95      0.88      0.91        24
-           1       0.89      0.96      0.93        26
+           0       0.91      0.91      0.91        23
+           1       0.93      0.93      0.93        27
 
     accuracy                           0.92        50
    macro avg       0.92      0.92      0.92        50
 weighted avg       0.92      0.92      0.92        50
 
       ham  spam
-ham    21     3
-spam    1    25
-
-SVC Linear: Accuracy: 94.0
+ham    21     2
+spam    2    25
+SVC Linear: Accuracy: 90.0
               precision    recall  f1-score   support
 
-           0       0.89      1.00      0.94        24
-           1       1.00      0.88      0.94        26
+           0       0.82      1.00      0.90        23
+           1       1.00      0.81      0.90        27
 
-    accuracy                           0.94        50
-   macro avg       0.94      0.94      0.94        50
-weighted avg       0.95      0.94      0.94        50
+    accuracy                           0.90        50
+   macro avg       0.91      0.91      0.90        50
+weighted avg       0.92      0.90      0.90        50
 
       ham  spam
-ham    24     0
-spam    3    23
-
-Ensemble Method Accuracy: 94.0
+ham    23     0
+spam    5    22
+Ensemble Method Accuracy: 90.0
               precision    recall  f1-score   support
 
-           0       0.89      1.00      0.94        24
-           1       1.00      0.88      0.94        26
+           0       0.82      1.00      0.90        23
+           1       1.00      0.81      0.90        27
 
-    accuracy                           0.94        50
-   macro avg       0.94      0.94      0.94        50
-weighted avg       0.95      0.94      0.94        50
+    accuracy                           0.90        50
+   macro avg       0.91      0.91      0.90        50
+weighted avg       0.92      0.90      0.90        50
 
       ham  spam
-ham    24     0
-spam    3    23
+ham    23     0
+spam    5    22
 '''
