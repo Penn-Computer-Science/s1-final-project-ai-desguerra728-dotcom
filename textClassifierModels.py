@@ -137,7 +137,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 # define models to train
 names = ['Logistic Regression', 'Multinomial NB', 'SVC Linear']
-classifiers1 = [
+classifiers = [
     LogisticRegression(max_iter=100, C=1.0),
     MultinomialNB(alpha=1.0),
     LinearSVC(C=1.0, max_iter=1000)
@@ -149,7 +149,7 @@ classifiers2 = [
     LinearSVC(C=1.0, max_iter=1)
 ]
 
-classifiers = [
+classifiers3 = [
     LogisticRegression(max_iter=100, C=0.1),
     MultinomialNB(alpha=1.0),
     LinearSVC(C=0.1, max_iter=1000)
