@@ -122,7 +122,7 @@ featuresets = [(find_features(text), label) for text, label in messages]
 
 #  split training adn tetsing datta sets using sklearn
 from sklearn import model_selection
-train, test = model_selection.train_test_split(featuresets, test_size = 0.20, random_state = seed)
+train, test = model_selection.train_test_split(featuresets, test_size = 0.33, random_state = seed)
 
 print("num of train: " + str(len(train)))
 print("num of test: " + str(len(test)))
@@ -130,27 +130,32 @@ print()
 
 
 # SCIKIT_LEARM CLASSIFIERS WITH NLTK
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.svm import SVC
-from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+from sklearn.svm import LinearSVC
+from sklearn.metrics import classification_report, confusion_matrix
 
 # define models to train
-names = ['K Nearest Neighbors', 'Decision Tree', 'Random Forest', 'Logistic Regression', 'SGD Classifier', 'Multinomial NB', 'SVC Linear']
-classfiers = [
-    KNeighborsClassifier(),
-    DecisionTreeClassifier(),
-    RandomForestClassifier(),
-    LogisticRegression(),
-    SGDClassifier(max_iter = 100),
-    MultinomialNB(),
-    SVC(kernel = 'linear')
+names = ['Logistic Regression', 'Multinomial NB', 'SVC Linear']
+classifiers1 = [
+    LogisticRegression(max_iter=100, C=1.0),
+    MultinomialNB(alpha=1.0),
+    LinearSVC(C=1.0, max_iter=1000)
 ]
 
-models = list(zip(names, classfiers))
+classifiers2 = [
+    LogisticRegression(max_iter=2, C=1.0),
+    MultinomialNB(alpha=5.0),
+    LinearSVC(C=1.0, max_iter=1)
+]
+
+classifiers = [
+    LogisticRegression(max_iter=100, C=0.1),
+    MultinomialNB(alpha=1.0),
+    LinearSVC(C=0.1, max_iter=1000)
+]
+
+models = list(zip(names, classifiers))
 print(models)
 
 # wrap models in NLTK then train and test
@@ -239,217 +244,4 @@ fig.colorbar(im, ax=ax)
 plt.tight_layout()
 plt.show()
 
-'''
-K Nearest Neighbors: Accuracy: 50.0
-              precision    recall  f1-score   support
-
-           0       0.48      1.00      0.65        23
-           1       1.00      0.07      0.14        27
-
-    accuracy                           0.50        50
-   macro avg       0.74      0.54      0.39        50
-weighted avg       0.76      0.50      0.37        50
-
-      ham  spam
-ham    23     0
-spam   25     2
-Decision Tree: Accuracy: 80.0
-              precision    recall  f1-score   support
-
-           0       0.76      0.83      0.79        23
-           1       0.84      0.78      0.81        27
-
-    accuracy                           0.80        50
-   macro avg       0.80      0.80      0.80        50
-weighted avg       0.80      0.80      0.80        50
-
-      ham  spam
-ham    19     4
-spam    6    21
-Random Forest: Accuracy: 84.0
-              precision    recall  f1-score   support
-
-           0       0.74      1.00      0.85        23
-           1       1.00      0.70      0.83        27
-
-    accuracy                           0.84        50
-   macro avg       0.87      0.85      0.84        50
-weighted avg       0.88      0.84      0.84        50
-
-      ham  spam
-ham    23     0
-spam    8    19
-Logistic Regression: Accuracy: 90.0
-              precision    recall  f1-score   support
-
-           0       0.82      1.00      0.90        23
-           1       1.00      0.81      0.90        27
-
-    accuracy                           0.90        50
-   macro avg       0.91      0.91      0.90        50
-weighted avg       0.92      0.90      0.90        50
-
-      ham  spam
-ham    23     0
-spam    5    22
-SGD Classifier: Accuracy: 86.0
-              precision    recall  f1-score   support
-
-           0       0.86      0.83      0.84        23
-           1       0.86      0.89      0.87        27
-
-    accuracy                           0.86        50
-   macro avg       0.86      0.86      0.86        50
-weighted avg       0.86      0.86      0.86        50
-
-      ham  spam
-ham    19     4
-spam    3    24
-Multinomial NB: Accuracy: 92.0
-              precision    recall  f1-score   support
-
-           0       0.91      0.91      0.91        23
-           1       0.93      0.93      0.93        27
-
-    accuracy                           0.92        50
-   macro avg       0.92      0.92      0.92        50
-weighted avg       0.92      0.92      0.92        50
-
-      ham  spam
-ham    21     2
-spam    2    25
-SVC Linear: Accuracy: 90.0
-              precision    recall  f1-score   support
-
-           0       0.82      1.00      0.90        23
-           1       1.00      0.81      0.90        27
-
-    accuracy                           0.90        50
-   macro avg       0.91      0.91      0.90        50
-weighted avg       0.92      0.90      0.90        50
-
-      ham  spam
-ham    23     0
-spam    5    22
-Ensemble Method Accuracy: 90.0
-              precision    recall  f1-score   support
-
-           0       0.82      1.00      0.90        23
-           1       1.00      0.81      0.90        27
-
-    accuracy                           0.90        50
-   macro avg       0.91      0.91      0.90        50
-weighted avg       0.92      0.90      0.90        50
-
-      ham  spam
-ham    23     0
-spam    5    22
-'''
-
-
-'''
-K Nearest Neighbors: Accuracy: 66.66666666666666
-              precision    recall  f1-score   support
-
-           0       0.62      1.00      0.77        18
-           1       1.00      0.27      0.42        15
-
-    accuracy                           0.67        33
-   macro avg       0.81      0.63      0.59        33
-weighted avg       0.79      0.67      0.61        33
-
-      ham  spam
-ham    18     0
-spam   11     4
-Decision Tree: Accuracy: 93.93939393939394
-              precision    recall  f1-score   support
-
-           0       1.00      0.89      0.94        18
-           1       0.88      1.00      0.94        15
-
-    accuracy                           0.94        33
-   macro avg       0.94      0.94      0.94        33
-weighted avg       0.95      0.94      0.94        33
-
-      ham  spam
-ham    16     2
-spam    0    15
-Random Forest: Accuracy: 93.93939393939394
-              precision    recall  f1-score   support
-
-           0       0.90      1.00      0.95        18
-           1       1.00      0.87      0.93        15
-
-    accuracy                           0.94        33
-   macro avg       0.95      0.93      0.94        33
-weighted avg       0.95      0.94      0.94        33
-
-      ham  spam
-ham    18     0
-spam    2    13
-Logistic Regression: Accuracy: 93.93939393939394
-              precision    recall  f1-score   support
-
-           0       0.90      1.00      0.95        18
-           1       1.00      0.87      0.93        15
-
-    accuracy                           0.94        33
-   macro avg       0.95      0.93      0.94        33
-weighted avg       0.95      0.94      0.94        33
-
-      ham  spam
-ham    18     0
-spam    2    13
-SGD Classifier: Accuracy: 87.87878787878788
-              precision    recall  f1-score   support
-
-           0       0.89      0.89      0.89        18
-           1       0.87      0.87      0.87        15
-
-    accuracy                           0.88        33
-   macro avg       0.88      0.88      0.88        33
-weighted avg       0.88      0.88      0.88        33
-
-      ham  spam
-ham    16     2
-spam    2    13
-Multinomial NB: Accuracy: 87.87878787878788
-              precision    recall  f1-score   support
-
-           0       0.89      0.89      0.89        18
-           1       0.87      0.87      0.87        15
-
-    accuracy                           0.88        33
-   macro avg       0.88      0.88      0.88        33
-weighted avg       0.88      0.88      0.88        33
-
-      ham  spam
-ham    16     2
-spam    2    13
-SVC Linear: Accuracy: 93.93939393939394
-              precision    recall  f1-score   support
-
-           0       0.90      1.00      0.95        18
-           1       1.00      0.87      0.93        15
-
-    accuracy                           0.94        33
-   macro avg       0.95      0.93      0.94        33
-weighted avg       0.95      0.94      0.94        33
-
-      ham  spam
-ham    18     0
-spam    2    13
-Ensemble Method Accuracy: 93.93939393939394
-              precision    recall  f1-score   support
-
-           0       0.90      1.00      0.95        18
-           1       1.00      0.87      0.93        15
-
-    accuracy                           0.94        33
-   macro avg       0.95      0.93      0.94        33
-weighted avg       0.95      0.94      0.94        33
-
-      ham  spam
-ham    18     0
-spam    2    13
 '''
