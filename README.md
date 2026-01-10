@@ -177,16 +177,20 @@ model = keras.models.load_model("model.keras")
 ## Reflection - Complete this once you have finished!
 
 **Best performing model/run and why:**  
-*(Write here)*  
+The best performing models were the Logistic Regression classifier for runs 1 and 2, and the Linear SVC for all runs. Both models achieved approximately 93% accuracy on their respective runs. They also created confusion matrices that showed ideal results. Additionally, the SVC Linear classifier  remained the most consistent throughout all runs (with varying hyperparameters) which suggests that this model is advantageous to use for this specific dataset I used and similar sets.
 
 **Most important hyperparameters and effects:**  
-*(Write here)*  
+For LR, I found that C wa sthe most important hyperparameter as decreasing it to a smaller value cause a decrease in the model's accuracy. I read in the SciKit Learn docs that lowering the value of C increases regularization, which lowers the weights of features creating a more "cautious" model. I think for the second run, the model was less able to recognize patterns within the dataset.
+
+For MNB, the most imprtany hyperparameter was alpha which controls smoothing. In the secomd run, I increased it, which also hindered the models abiltiy to recognize patterns.
+
+For Linear SVC, the model presented the same accuracy no matter how I changed its parameters.
 
 **Dataset limitations or biases:**  
-*(Write here)*  
+Since I had written the messages of the datset myself, the dataset is likely biased to my personal experience and idea of spam and ham messages. Therefore, the dataset isn't a good representation of the spam vs ham messages that exist in reality (it would have been more accurate if the messages were collected from real world instances). Moreover, the dataset remains at 100 messages (with an  50/50 split between the two labels). The models may could beenmore accurate if provided with a dataset greater in size.
 
 **Unexpected results:**  
-*(Write here)*  
+I was surprised to find the exact same accuracy results between different classifiers between different runs. I observed 93% on both LR and SVC Linear. I surprised how SVC Linear showed the same accuracy for all three runs.
 
 **What you would improve with more time:**  
-*(Write here)*
+I read in the SciKit Learn docs about using grid search to tune hyperparameters. If I had more time, I would attempt to figure it out.
